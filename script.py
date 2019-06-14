@@ -47,6 +47,9 @@ while True:
           key = 'solution interval (s)'
           key = 'age of differential (s)'
           key = 'ratio for ar validation'
+          key = '# of satellites rover'
+          key = '# of satellites base'
+          key = '# of valid satellites'
           key = 'GDOP/PDOP/HDOP/VDOP'
           key = '# of real estimated states'
           key = '# of all estimated states'
@@ -70,12 +73,12 @@ while True:
           key = 'receiver time mark count'
           key = 'rtklib time mark count'
           if key in dict:
-             print('sats rover:'+dict[key])                    
+             print('sats rover:'+dict['# of satellites rover'])
+             print('solution status:'+dict[solution status])                    
         
         #for key in dict:
         #  print('KEY='+key+'  VALUE='+dict[key])
         
         time.sleep(0.1)
         #print(dict)
-
 
