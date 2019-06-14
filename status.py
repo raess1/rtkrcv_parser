@@ -1,6 +1,6 @@
-import time
+rt time
 import socket
-
+import datetime
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(('000.000.000.000', 5000))
@@ -76,6 +76,9 @@ while True:
           if key in dict:
              #print('sats rover:'+dict['# of satellites rover'])
              #print('solution status:'+dict['solution status'])
+
+             #for key in dict:
+             #  print('KEY='+key+'  VALUE='+dict[key])
 
              
              #Split GDOP/PDOP/HDOP/VDOP in to diffrent parameters#
@@ -291,7 +294,7 @@ while True:
              INPUT_Data_Base_obs_c = INPUT_Data_Base_obs_b[1]
              INPUT_Data_Base_obs_d = INPUT_Data_Base_obs_c.split(')')
              INPUT_Data_Base_obs = INPUT_Data_Base_obs_d [0]
-             print (INPUT_Data_Base_obs)
+             #print (INPUT_Data_Base_obs)
 
              INPUT_Data_Base_nav_b = INPUT_Data_Base_nav_a.split('(')
              INPUT_Data_Base_nav_c = INPUT_Data_Base_nav_b[1]
@@ -340,3 +343,88 @@ while True:
              INPUT_Data_Base_err_d = INPUT_Data_Base_err_c.split(')')
              INPUT_Data_Base_err = INPUT_Data_Base_err_d [0]
              #print (INPUT_Data_Base_err)
+
+
+             #bytes in input buffer of input data corr#
+             INPUT_Data_corr = dict['# of input data corr']
+             #print (INPUT_Data_corr)
+             INPUT_Data_corr_Split = INPUT_Data_corr.split(",")
+             INPUT_Data_corr_obs_a = INPUT_Data_corr_Split [0]
+             INPUT_Data_corr_nav_a = INPUT_Data_corr_Split [1]
+             INPUT_Data_corr_gnav_a = INPUT_Data_corr_Split [2]
+             INPUT_Data_corr_ion_a = INPUT_Data_corr_Split [3]
+             INPUT_Data_corr_sbs_a = INPUT_Data_corr_Split [4]
+             INPUT_Data_corr_pos_a = INPUT_Data_corr_Split [5]
+             INPUT_Data_corr_dgps_a = INPUT_Data_corr_Split [6]
+             INPUT_Data_corr_ssr_a = INPUT_Data_corr_Split [7]
+             INPUT_Data_corr_err_a = INPUT_Data_corr_Split [8]
+
+             INPUT_Data_corr_obs_b = INPUT_Data_corr_obs_a.split('(')
+             INPUT_Data_corr_obs_c = INPUT_Data_corr_obs_b[1]
+             INPUT_Data_corr_obs_d = INPUT_Data_corr_obs_c.split(')')
+             INPUT_Data_corr_obs = INPUT_Data_corr_obs_d [0]
+             #print (INPUT_Data_corr_obs)
+
+             INPUT_Data_corr_nav_b = INPUT_Data_corr_nav_a.split('(')
+             INPUT_Data_corr_nav_c = INPUT_Data_corr_nav_b[1]
+             INPUT_Data_corr_nav_d = INPUT_Data_corr_nav_c.split(')')
+             INPUT_Data_corr_nav = INPUT_Data_corr_nav_d [0]
+             #print (INPUT_Data_corr_nav)
+
+             INPUT_Data_corr_gnav_b = INPUT_Data_corr_gnav_a.split('(')
+             INPUT_Data_corr_gnav_c = INPUT_Data_corr_gnav_b[1]
+             INPUT_Data_corr_gnav_d = INPUT_Data_corr_gnav_c.split(')')
+             INPUT_Data_corr_gnav = INPUT_Data_corr_gnav_d [0]
+             #print (INPUT_Data_corr_gnav)
+
+             INPUT_Data_corr_ion_b = INPUT_Data_corr_ion_a.split('(')
+             INPUT_Data_corr_ion_c = INPUT_Data_corr_ion_b[1]
+             INPUT_Data_corr_ion_d = INPUT_Data_corr_ion_c.split(')')
+             INPUT_Data_corr_ion = INPUT_Data_corr_ion_d [0]
+             #print (INPUT_Data_corr_ion)
+
+             INPUT_Data_corr_sbs_b = INPUT_Data_corr_sbs_a.split('(')
+             INPUT_Data_corr_sbs_c = INPUT_Data_corr_sbs_b[1]
+             INPUT_Data_corr_sbs_d = INPUT_Data_corr_sbs_c.split(')')
+             INPUT_Data_corr_sbs = INPUT_Data_corr_sbs_d [0]
+             #print (INPUT_Data_corr_sbs)
+
+             INPUT_Data_corr_pos_b = INPUT_Data_corr_pos_a.split('(')
+             INPUT_Data_corr_pos_c = INPUT_Data_corr_pos_b[1]
+             INPUT_Data_corr_pos_d = INPUT_Data_corr_pos_c.split(')')
+             INPUT_Data_corr_pos = INPUT_Data_corr_pos_d [0]
+             #print (INPUT_Data_corr_pos)
+
+             INPUT_Data_corr_dgps_b = INPUT_Data_corr_dgps_a.split('(')
+             INPUT_Data_corr_dgps_c = INPUT_Data_corr_dgps_b[1]
+             INPUT_Data_corr_dgps_d = INPUT_Data_corr_dgps_c.split(')')
+             INPUT_Data_corr_dgps = INPUT_Data_corr_dgps_d [0]
+             #print (INPUT_Data_corr_dgps)
+
+             INPUT_Data_corr_ssr_b = INPUT_Data_corr_ssr_a.split('(')
+             INPUT_Data_corr_ssr_c = INPUT_Data_corr_ssr_b[1]
+             INPUT_Data_corr_ssr_d = INPUT_Data_corr_ssr_c.split(')')
+             INPUT_Data_corr_ssr = INPUT_Data_corr_ssr_d [0]
+             #print (INPUT_Data_corr_ssr)
+
+             INPUT_Data_corr_err_b = INPUT_Data_corr_err_a.split('(')
+             INPUT_Data_corr_err_c = INPUT_Data_corr_err_b[1]
+             INPUT_Data_corr_err_d = INPUT_Data_corr_err_c.split(')')
+             INPUT_Data_corr_err = INPUT_Data_corr_err_d [0]
+             #print (INPUT_Data_corr_err)
+
+
+             #time of receiver clock rover ####TO FIX####
+             time_clock_rover = dict['time of receiver clock rover']
+             #date_rover = datetime.datetime.strptime(time_clock_rover, "%Y/%m/%d %H:%M:%S.%f")
+             date_rover = datetime.datetime.strptime(time_clock_rover, "%Y/%m/%d %H:%M:%S.%f")
+             #print (date_rover)
+
+
+
+
+
+      
+        
+        time.sleep(0.1)
+        #print(dict)
