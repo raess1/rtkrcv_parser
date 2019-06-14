@@ -417,7 +417,7 @@ while True:
              #time of receiver clock rover ####TO FIX####
              time_clock_rover = dict['time of receiver clock rover']
              #date_rover = datetime.datetime.strptime(time_clock_rover, "%Y/%m/%d %H:%M:%S.%f")
-             date_rover = datetime.datetime.strptime(time_clock_rover, "%Y/%m/%d %H:%M:%S.%f")
+             date_rover = datetime.datetime.strptime(time_clock_rover, "%Y/%m/%d %H")
              #print (date_rover)
 
 
