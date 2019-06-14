@@ -1,6 +1,6 @@
 import time
 import socket
-import re
+
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(('000.000.000.000', 5000))
@@ -271,3 +271,72 @@ while True:
              INPUT_Data_Rover_err_d = INPUT_Data_Rover_err_c.split(')')
              INPUT_Data_Rover_err = INPUT_Data_Rover_err_d [0]
              #print (INPUT_Data_Rover_err)
+
+
+             #bytes in input buffer of input data base#
+             INPUT_Data_Base = dict['# of input data base']
+             #print (INPUT_Data_Base)
+             INPUT_Data_Base_Split = INPUT_Data_Base.split(",")
+             INPUT_Data_Base_obs_a = INPUT_Data_Base_Split [0]
+             INPUT_Data_Base_nav_a = INPUT_Data_Base_Split [1]
+             INPUT_Data_Base_gnav_a = INPUT_Data_Base_Split [2]
+             INPUT_Data_Base_ion_a = INPUT_Data_Base_Split [3]
+             INPUT_Data_Base_sbs_a = INPUT_Data_Base_Split [4]
+             INPUT_Data_Base_pos_a = INPUT_Data_Base_Split [5]
+             INPUT_Data_Base_dgps_a = INPUT_Data_Base_Split [6]
+             INPUT_Data_Base_ssr_a = INPUT_Data_Base_Split [7]
+             INPUT_Data_Base_err_a = INPUT_Data_Base_Split [8]
+
+             INPUT_Data_Base_obs_b = INPUT_Data_Base_obs_a.split('(')
+             INPUT_Data_Base_obs_c = INPUT_Data_Base_obs_b[1]
+             INPUT_Data_Base_obs_d = INPUT_Data_Base_obs_c.split(')')
+             INPUT_Data_Base_obs = INPUT_Data_Base_obs_d [0]
+             print (INPUT_Data_Base_obs)
+
+             INPUT_Data_Base_nav_b = INPUT_Data_Base_nav_a.split('(')
+             INPUT_Data_Base_nav_c = INPUT_Data_Base_nav_b[1]
+             INPUT_Data_Base_nav_d = INPUT_Data_Base_nav_c.split(')')
+             INPUT_Data_Base_nav = INPUT_Data_Base_nav_d [0]
+             #print (INPUT_Data_Base_nav)
+
+             INPUT_Data_Base_gnav_b = INPUT_Data_Base_gnav_a.split('(')
+             INPUT_Data_Base_gnav_c = INPUT_Data_Base_gnav_b[1]
+             INPUT_Data_Base_gnav_d = INPUT_Data_Base_gnav_c.split(')')
+             INPUT_Data_Base_gnav = INPUT_Data_Base_gnav_d [0]
+             #print (INPUT_Data_Base_gnav)
+
+             INPUT_Data_Base_ion_b = INPUT_Data_Base_ion_a.split('(')
+             INPUT_Data_Base_ion_c = INPUT_Data_Base_ion_b[1]
+             INPUT_Data_Base_ion_d = INPUT_Data_Base_ion_c.split(')')
+             INPUT_Data_Base_ion = INPUT_Data_Base_ion_d [0]
+             #print (INPUT_Data_Base_ion)
+
+             INPUT_Data_Base_sbs_b = INPUT_Data_Base_sbs_a.split('(')
+             INPUT_Data_Base_sbs_c = INPUT_Data_Base_sbs_b[1]
+             INPUT_Data_Base_sbs_d = INPUT_Data_Base_sbs_c.split(')')
+             INPUT_Data_Base_sbs = INPUT_Data_Base_sbs_d [0]
+             #print (INPUT_Data_Base_sbs)
+
+             INPUT_Data_Base_pos_b = INPUT_Data_Base_pos_a.split('(')
+             INPUT_Data_Base_pos_c = INPUT_Data_Base_pos_b[1]
+             INPUT_Data_Base_pos_d = INPUT_Data_Base_pos_c.split(')')
+             INPUT_Data_Base_pos = INPUT_Data_Base_pos_d [0]
+             #print (INPUT_Data_Base_pos)
+
+             INPUT_Data_Base_dgps_b = INPUT_Data_Base_dgps_a.split('(')
+             INPUT_Data_Base_dgps_c = INPUT_Data_Base_dgps_b[1]
+             INPUT_Data_Base_dgps_d = INPUT_Data_Base_dgps_c.split(')')
+             INPUT_Data_Base_dgps = INPUT_Data_Base_dgps_d [0]
+             #print (INPUT_Data_Base_dgps)
+
+             INPUT_Data_Base_ssr_b = INPUT_Data_Base_ssr_a.split('(')
+             INPUT_Data_Base_ssr_c = INPUT_Data_Base_ssr_b[1]
+             INPUT_Data_Base_ssr_d = INPUT_Data_Base_ssr_c.split(')')
+             INPUT_Data_Base_ssr = INPUT_Data_Base_ssr_d [0]
+             #print (INPUT_Data_Base_ssr)
+
+             INPUT_Data_Base_err_b = INPUT_Data_Base_err_a.split('(')
+             INPUT_Data_Base_err_c = INPUT_Data_Base_err_b[1]
+             INPUT_Data_Base_err_d = INPUT_Data_Base_err_c.split(')')
+             INPUT_Data_Base_err = INPUT_Data_Base_err_d [0]
+             #print (INPUT_Data_Base_err)
