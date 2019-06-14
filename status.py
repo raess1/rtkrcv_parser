@@ -1,4 +1,4 @@
-rt time
+import time
 import socket
 import datetime
 
