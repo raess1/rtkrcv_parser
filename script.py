@@ -2,7 +2,7 @@ import time
 import socket
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('185.112.115.234', 5000))
+client_socket.connect(('000.000.000.000', 5000))
 client_socket.settimeout(10)
 GPS_List = [0.0]
 time.sleep(2)
