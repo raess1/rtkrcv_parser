@@ -1,5 +1,6 @@
 import time
 import socket
+import re
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(('000.000.000.000', 5000))
@@ -79,7 +80,6 @@ while True:
              
              #Split GDOP/PDOP/HDOP/VDOP in to diffrent parameters#
              GPHV = dict['GDOP/PDOP/HDOP/VDOP']
-             #print (GPHV)
              GPHV_Split = GPHV.split(",")
              #print (GPHV_Split[0])
              #print (GPHV_Split[1])
@@ -93,7 +93,6 @@ while True:
 
              #pos xyz single (m) rover in to diffrent parameters#
              POS_Single = dict['pos xyz single (m) rover']
-             #print (POS_Single)
              POS_Single_Split = POS_Single.split(",")
              POS_Single_X = POS_Single_Split[0]
              POS_Single_Y = POS_Single_Split[1]
@@ -105,18 +104,16 @@ while True:
              #vel enu (m/s) rover #
              VEL_Enu = dict['vel enu (m/s) rover']
              VEL_Enu_Split = VEL_Enu.split(",")
-             #print (VEL_Enu_Split)
-             VEL_Enu_X = VEL_Enu_Split[0]
-             VEL_Enu_Y = VEL_Enu_Split[1]
-             VEL_Enu_Z = VEL_Enu_Split[2]
-             #print (VEL_Enu_X)
-             #print (VEL_Enu_Y)
-             #print (VEL_Enu_Z)
+             VEL_Enu_E = VEL_Enu_Split[0]
+             VEL_Enu_N = VEL_Enu_Split[1]
+             VEL_Enu_U = VEL_Enu_Split[2]
+             #print (VEL_Enu_E)
+             #print (VEL_Enu_N)
+             #print (VEL_Enu_U)
 
              #pos xyz float in to diffrent parameters#
              POS_XYZ_Float = dict['pos xyz float (m) rover']
              POS_XYZ_Float_Split = POS_XYZ_Float.split(",")
-             #print (POS_XYZ_Float_Split)
              POS_XYZ_Float_X = POS_XYZ_Float_Split[0]
              POS_XYZ_Float_Y = POS_XYZ_Float_Split[1]
              POS_XYZ_Float_Z = POS_XYZ_Float_Split[2]
@@ -127,7 +124,6 @@ while True:
              #pos xyz float std (m) rover in to diffrent parameters#
              POS_XYZ_Float_Std = dict['pos xyz float std (m) rover']
              POS_XYZ_Float_Std_Split = POS_XYZ_Float_Std.split(",")
-             #print (POS_XYZ_Float_Std_Split)
              POS_XYZ_Float_Std_X = POS_XYZ_Float_Std_Split[0]
              POS_XYZ_Float_Std_Y = POS_XYZ_Float_Std_Split[1]
              POS_XYZ_Float_Std_Z = POS_XYZ_Float_Std_Split[2]
@@ -139,7 +135,6 @@ while True:
              #pos xyz fixed (m) rover in to diffrent parameters#
              POS_XYZ_Fixed = dict['pos xyz fixed (m) rover']
              POS_XYZ_Fixed_Split = POS_XYZ_Fixed.split(",")
-             #print (POS_XYZ_Fixed_Split)
              POS_XYZ_Fixed_X = POS_XYZ_Fixed_Split[0]
              POS_XYZ_Fixed_Y = POS_XYZ_Fixed_Split[1]
              POS_XYZ_Fixed_Z = POS_XYZ_Fixed_Split[2]
@@ -148,10 +143,9 @@ while True:
              #print (POS_XYZ_Fixed_Z)
 
 
-             #pos xyz fixed (m) rover in to diffrent parameters#
+             #pos xyz fixed std (m) rover in to diffrent parameters#
              POS_XYZ_Fixed_Std = dict['pos xyz fixed std (m) rover']
              POS_XYZ_Fixed_Std_Split = POS_XYZ_Fixed_Std.split(",")
-             #print (POS_XYZ_Fixed_Std_Split)
              POS_XYZ_Fixed_Std_X = POS_XYZ_Fixed_Std_Split[0]
              POS_XYZ_Fixed_Std_Y = POS_XYZ_Fixed_Std_Split[1]
              POS_XYZ_Fixed_Std_Z = POS_XYZ_Fixed_Std_Split[2]
@@ -162,22 +156,118 @@ while True:
              #pos xyz (m) base in to diffrent parameters#
              POS_XYZ_Base = dict['pos xyz (m) base']
              POS_XYZ_Base_Split = POS_XYZ_Base.split(",")
-             #print (POS_XYZ_Fixed_Std_Split)
              POS_XYZ_Base_X = POS_XYZ_Base_Split[0]
              POS_XYZ_Base_Y = POS_XYZ_Base_Split[1]
              POS_XYZ_Base_Z = POS_XYZ_Base_Split[2]
-             print (POS_XYZ_Base_X)
-             print (POS_XYZ_Base_Y)
-             print (POS_XYZ_Base_Z)
+             #print (POS_XYZ_Base_X)
+             #print (POS_XYZ_Base_Y)
+             #print (POS_XYZ_Base_Z)
 
 
              #pos llh (deg,m) base in to diffrent parameters#
              POS_LLH_Base = dict['pos llh (deg,m) base']
              POS_LLH_Base_Split = POS_LLH_Base.split(",")
-             #print (POS_XYZ_Fixed_Std_Split)
              POS_LLH_Base_Latitude = POS_LLH_Base_Split[0]
              POS_LLH_Base_Longitude = POS_LLH_Base_Split[1]
              POS_LLH_Base_Height = POS_LLH_Base_Split[2]
              #print (POS_LLH_Base_Latitude)
              #print (POS_LLH_Base_Longitude)
              #print (POS_LLH_Base_Height)
+
+             #ant delta rover e/n/u#
+             ANT_Delta_Rover = dict['ant delta rover']
+             ANT_Delta_Rover_Split = ANT_Delta_Rover.split(" ")
+             ANT_Delta_Rover_E = ANT_Delta_Rover_Split[0]
+             ANT_Delta_Rover_N = ANT_Delta_Rover_Split[1]
+             ANT_Delta_Rover_U = ANT_Delta_Rover_Split[2]
+             #print (ANT_Delta_Rover_E)
+             #print (ANT_Delta_Rover_N)
+             #print (ANT_Delta_Rover_U)
+
+             #ant delta base e/n/u#
+             #ANT_Delta_Base = dict['ant delta base']
+             #ANT_Delta_Base_Split = ANT_Delta_Base.split(" ")
+             #ANT_Delta_Base_E = ANT_Delta_Base_Split[0]
+             #ANT_Delta_Base_N = ANT_Delta_Base_Split[1]
+             #ANT_Delta_Base_U = ANT_Delta_Base_Split[2]
+             #print (ANT_Delta_Base_E)
+             #print (ANT_Delta_Base_N)
+             #print (ANT_Delta_Base_U)
+
+             #vel enu (m/s) base #
+             #VEL_Enu_Base = dict['vel enu (m/s) base']
+             #VEL_Enu_Base_Split = VEL_Enu_Base.split(",")
+             #VEL_Enu_E = VEL_Enu_Base_Split[0]
+             #VEL_Enu_N = VEL_Enu_Base_Split[1]
+             #VEL_Enu_U = VEL_Enu_Base_Split[2]
+             #print (VEL_Enu_E)
+             #print (VEL_Enu_N)
+             #print (VEL_Enu_U)
+
+             #bytes in input buffer input data rover#
+             INPUT_Data_Rover = dict['# of input data rover']
+             #print (INPUT_Data_Rover)
+             INPUT_Data_Rover_Split = INPUT_Data_Rover.split(",")
+             INPUT_Data_Rover_obs_a = INPUT_Data_Rover_Split [0]
+             INPUT_Data_Rover_nav_a = INPUT_Data_Rover_Split [1]
+             INPUT_Data_Rover_gnav_a = INPUT_Data_Rover_Split [2]
+             INPUT_Data_Rover_ion_a = INPUT_Data_Rover_Split [3]
+             INPUT_Data_Rover_sbs_a = INPUT_Data_Rover_Split [4]
+             INPUT_Data_Rover_pos_a = INPUT_Data_Rover_Split [5]
+             INPUT_Data_Rover_dgps_a = INPUT_Data_Rover_Split [6]
+             INPUT_Data_Rover_ssr_a = INPUT_Data_Rover_Split [7]
+             INPUT_Data_Rover_err_a = INPUT_Data_Rover_Split [8]
+
+             INPUT_Data_Rover_obs_b = INPUT_Data_Rover_obs_a.split('(')
+             INPUT_Data_Rover_obs_c = INPUT_Data_Rover_obs_b[1]
+             INPUT_Data_Rover_obs_d = INPUT_Data_Rover_obs_c.split(')')
+             INPUT_Data_Rover_obs = INPUT_Data_Rover_obs_d [0]
+             #print (INPUT_Data_Rover_obs)
+
+             INPUT_Data_Rover_nav_b = INPUT_Data_Rover_nav_a.split('(')
+             INPUT_Data_Rover_nav_c = INPUT_Data_Rover_nav_b[1]
+             INPUT_Data_Rover_nav_d = INPUT_Data_Rover_nav_c.split(')')
+             INPUT_Data_Rover_nav = INPUT_Data_Rover_nav_d [0]
+             #print (INPUT_Data_Rover_nav)
+
+             INPUT_Data_Rover_gnav_b = INPUT_Data_Rover_gnav_a.split('(')
+             INPUT_Data_Rover_gnav_c = INPUT_Data_Rover_gnav_b[1]
+             INPUT_Data_Rover_gnav_d = INPUT_Data_Rover_gnav_c.split(')')
+             INPUT_Data_Rover_gnav = INPUT_Data_Rover_gnav_d [0]
+             #print (INPUT_Data_Rover_gnav)
+
+             INPUT_Data_Rover_ion_b = INPUT_Data_Rover_ion_a.split('(')
+             INPUT_Data_Rover_ion_c = INPUT_Data_Rover_ion_b[1]
+             INPUT_Data_Rover_ion_d = INPUT_Data_Rover_ion_c.split(')')
+             INPUT_Data_Rover_ion = INPUT_Data_Rover_ion_d [0]
+             #print (INPUT_Data_Rover_ion)
+
+             INPUT_Data_Rover_sbs_b = INPUT_Data_Rover_sbs_a.split('(')
+             INPUT_Data_Rover_sbs_c = INPUT_Data_Rover_sbs_b[1]
+             INPUT_Data_Rover_sbs_d = INPUT_Data_Rover_sbs_c.split(')')
+             INPUT_Data_Rover_sbs = INPUT_Data_Rover_sbs_d [0]
+             #print (INPUT_Data_Rover_sbs)
+
+             INPUT_Data_Rover_pos_b = INPUT_Data_Rover_pos_a.split('(')
+             INPUT_Data_Rover_pos_c = INPUT_Data_Rover_pos_b[1]
+             INPUT_Data_Rover_pos_d = INPUT_Data_Rover_pos_c.split(')')
+             INPUT_Data_Rover_pos = INPUT_Data_Rover_pos_d [0]
+             #print (INPUT_Data_Rover_pos)
+
+             INPUT_Data_Rover_dgps_b = INPUT_Data_Rover_dgps_a.split('(')
+             INPUT_Data_Rover_dgps_c = INPUT_Data_Rover_dgps_b[1]
+             INPUT_Data_Rover_dgps_d = INPUT_Data_Rover_dgps_c.split(')')
+             INPUT_Data_Rover_dgps = INPUT_Data_Rover_dgps_d [0]
+             #print (INPUT_Data_Rover_dgps)
+
+             INPUT_Data_Rover_ssr_b = INPUT_Data_Rover_ssr_a.split('(')
+             INPUT_Data_Rover_ssr_c = INPUT_Data_Rover_ssr_b[1]
+             INPUT_Data_Rover_ssr_d = INPUT_Data_Rover_ssr_c.split(')')
+             INPUT_Data_Rover_ssr = INPUT_Data_Rover_ssr_d [0]
+             #print (INPUT_Data_Rover_ssr)
+
+             INPUT_Data_Rover_err_b = INPUT_Data_Rover_err_a.split('(')
+             INPUT_Data_Rover_err_c = INPUT_Data_Rover_err_b[1]
+             INPUT_Data_Rover_err_d = INPUT_Data_Rover_err_c.split(')')
+             INPUT_Data_Rover_err = INPUT_Data_Rover_err_d [0]
+             #print (INPUT_Data_Rover_err)
