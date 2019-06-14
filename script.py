@@ -2,7 +2,7 @@ import time
 import socket
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('185.112.115.234', 5000))
+client_socket.connect(('xxx.xxx.xxx.xxx', xxxx))
 client_socket.settimeout(10)
 
 time.sleep(2)
